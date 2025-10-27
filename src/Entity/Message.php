@@ -6,6 +6,7 @@ use App\Repository\MessageRepository;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: MessageRepository::class)]
+#[ORM\HasLifecycleCallbacks]
 class Message
 {
     #[ORM\Id]
@@ -62,5 +63,17 @@ class Message
         $this->sender = $sender;
 
         return $this;
+    }
+
+    #[ORM\PrePersist]
+    public function updateTimestamp() {
+        if (null === $this->timestamp) {
+            $this->setTimestamp(new \DateTime());
+        }
+    }
+
+    public function __toString()
+    {
+        return $this->getContent();
     }
 }
