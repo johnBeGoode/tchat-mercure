@@ -5,6 +5,7 @@ namespace App\Controller;
 
 use App\Entity\Message;
 use App\Form\ChatFormType;
+use App\Repository\MessageRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Mercure\Update;
 use Symfony\Component\Mercure\HubInterface;
@@ -16,13 +17,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ChatController extends AbstractController
 {
     #[Route('/', name:'app_chat')]
-    public function chat(Request $request, HubInterface $hub, EntityManagerInterface $em): Response
+    public function chat(Request $request, HubInterface $hub, EntityManagerInterface $em, MessageRepository $messageRepository): Response
     {
-        // $form = $this->createFormBuilder()
-        //     ->add('message', TextType::class, ['attr' => ['autocomplete' => 'off']])
-        //     ->add('send', SubmitType::class)
-        //     ->getForm();
-        
+        $messages = $messageRepository->findAll();
+
         $message = new Message();
         $message->setSender($this->getUser());
 
@@ -46,6 +44,7 @@ class ChatController extends AbstractController
 
         return $this->render('chat/index.html.twig', [
             'form' => $form,
+            'messages' => $messages
          ]);
     }
 }

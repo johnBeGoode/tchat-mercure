@@ -1,5 +1,9 @@
 <turbo-stream action="append" targets="#messages">
     <template>
-        <div>{{ message }}</div>
+        <div class="border rounded m-2 p-2 w-25">
+            <div class="user">{{ app.user }}</div>
+            <div class="timestamp"><small>{{ message.timestamp|date('d-m-Y H:i:s') }}</small></div>
+            <div class="content">{{ message }}</div>
+        </div>
     </template>
 </turbo-stream>

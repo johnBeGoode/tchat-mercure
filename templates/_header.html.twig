@@ -1,0 +1,25 @@
+<header>
+    <nav class="navbar bg-warning-subtle">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="{{ path('app_chat') }}">
+                <img src="{{ asset('images/slidev.svg') }}" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+                TchaT
+            </a>
+                {% if app.user %}
+                    <div class="mb-3">
+                        <button class="btn btn-danger"><a href="{{ path('app_logout') }}" class="text-light text-decoration-none">Logout</a></button>
+                    </div>
+                {% else %}
+                    <div>
+                        <button type="button" class="btn btn-dark">
+                            <a href="{{ path('app_register') }}" class="text-decoration-none text-light">Register</a>
+                        </button>
+                        <button type="button" class="btn btn-dark">
+                            <a href="{{ path('app_login') }}" class="text-decoration-none text-light">Login</a>                
+                        </button>
+                    </div>
+                {% endif %}
+
+        </div>
+    </nav>
+</header>

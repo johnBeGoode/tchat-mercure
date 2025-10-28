@@ -1,11 +1,22 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Chat</h1>
+    {% if app.user %}
+        <div id="messages" {{ turbo_stream_listen('chat') }}></div>
 
-    <div id="messages" {{ turbo_stream_listen('chat') }}></div>
-
-    <turbo-frame id="message_form">
-        {{ form(form) }}
-    </turbo-frame>
+        <turbo-frame id="message_form">
+            {{ form_start(form) }}
+                <div class="row w-50 mt-3 ms-1">
+                    <div class="col">
+                        {{ form_row(form.content) }}
+                    </div>
+                    <div class="col" id="submit">
+                        {{ form_row(form.send) }}
+                    </div>
+                </div>
+            {{ form_end(form) }}
+        </turbo-frame>
+    {% else %}
+        <div class="h4 my-3 ms-3">Please login you to chat</div>        
+    {% endif %}
 {% endblock %}
