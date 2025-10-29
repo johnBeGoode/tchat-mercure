@@ -15,7 +15,7 @@ Après avoir cloné le projet, installer les dépendances :
 composer install
 ```
 
-Installer Boostrap via importMap :
+Installer Boostrap via asset-mapper :
 
 ```bash
 symfony console importmap:install
@@ -42,7 +42,7 @@ symfony serve --no-tls -d
 
 ## Lancement
 
-Créer un utilisateur en cliquant sur register une fois le site lancé
+Créer un utilisateur en cliquant sur le bouton **Register** une fois le site lancé
 
 Le tchat fonctionne 😊
 
