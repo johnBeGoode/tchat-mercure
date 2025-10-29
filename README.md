@@ -1,6 +1,6 @@
 # Tchat-Mercure
 
-Un système de chat simple avec Mercure et ux-turbo
+Un système de chat simple avec Mercure et ux-turbo.
 
 ## 📦 Requis
 
@@ -33,18 +33,23 @@ Lancer le serveur interne de Symfony avec le flag no tls :
 symfony serve --no-tls -d
 ```
 
----
-⚠️ **L'application ne fonctionne qu'en HTTP et non HTTPS** ⚠️
+> [!WARNING]
+> **L'application est configurée pour ne fonctionner qu'en HTTP et non HTTPS.**
 
-‼️ **A n'utiliser qu'en mode DEV** ‼️
+Créer la base de données :
 
----
+```bash
+symfony console doctrine:database:create
+```
 
-## Lancement
+Appliquer la migration :
 
-Créer un utilisateur en cliquant sur le bouton **Register** une fois le site lancé
+```bash
+symfony console doctrine:migrations:migrate
+```
 
-Le tchat fonctionne 😊
+> [!IMPORTANT]
+> Créer un utilisateur en cliquant sur le bouton **Register** pour que le tchat fonctionne.
 
 ## 📄 Licence
 
